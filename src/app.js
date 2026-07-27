@@ -10,7 +10,7 @@ app.use(express.json());
 const notes = [];
 
 // the notes should look like
-const note = {
+ note = {
   title: "my first note",
   description: "this is my first note"
 };
@@ -31,5 +31,18 @@ app.get("/notes", (req, res) => {
     notes: notes
   });
 });
+
+/*delete /notes/ :index */
+
+app.delete('/notes/:index',(req,res) => {
+
+  const index  =  req.params.index /*1*/
+
+  delete notes[ index ]
+
+  res.status(200).json({
+    message: "note deleted sucessfully"
+  })
+})
 
 module.exports = app;
