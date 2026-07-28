@@ -39,6 +39,35 @@ res.status(200).json({
     message: "note deleted sucessfully"
   })
 });
+
+//Patch method: Jab server pe data ho aur usko update karna ho 
+app.patch("/days/:index", (req,res)=>{
+    const index = req.params.index
+    const day = days[index]
+
+    if (!day) {
+        return res.status(404).json({
+            message: "day not found"
+        })
+    }
+
+    if (req.body.title !== undefined) {
+        day.title = req.body.title
+    }
+
+    if (req.body.description !== undefined) {
+        day.description = req.body.description
+    }
+
+    return res.status(200).json({
+        message:"day updated successfully",
+        day
+    })
+
+
+
+})
+
 module.exports = app;
 
 
