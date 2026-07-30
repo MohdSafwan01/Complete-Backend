@@ -43,25 +43,14 @@ res.status(200).json({
 //Patch method: Jab server pe data ho aur usko update karna ho 
 app.patch("/days/:index", (req,res)=>{
     const index = req.params.index
-    const day = days[index]
+    const title = req.body.title    
 
-    if (!day) {
-        return res.status(404).json({
-            message: "day not found"
-        })
-    }
+    days [ index ].title  = title    
 
-    if (req.body.title !== undefined) {
-        day.title = req.body.title
-    }
 
-    if (req.body.description !== undefined) {
-        day.description = req.body.description
-    }
-
-    return res.status(200).json({
-        message:"day updated successfully",
-        day
+   
+    res.status(200).json({
+        message:"title updated sucessfully"
     })
 
 
